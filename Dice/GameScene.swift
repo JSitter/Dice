@@ -18,6 +18,7 @@ class GameScene: SKScene {
         
         // Get label node from scene and store it for use later
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
+        
         if let label = self.label {
             label.alpha = 0.0
             label.run(SKAction.fadeIn(withDuration: 2.0))
@@ -39,6 +40,10 @@ class GameScene: SKScene {
     
     
     func touchDown(atPoint pos : CGPoint) {
+        // Get label node from scene and store it for use later
+        self.label = self.childNode(withName: "//die1") as? SKLabelNode
+        self.label?.text = "\(Int.random(in: 0 ..< 10))"
+        print( "\(Int.random(in: 0 ..< 6))")
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             n.strokeColor = SKColor.green
@@ -64,6 +69,7 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let label = self.label {
+            
             label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
         }
         
